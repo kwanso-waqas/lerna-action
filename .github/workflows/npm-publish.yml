@@ -1,10 +1,9 @@
 on:
-   workflow_dispatch:
-    inputs:
-      branch:
-        description: Branch name
-        default: main
-        required: true
+  push:
+    branches:
+      - main
+    paths:
+      - "commo/**"
 jobs:
   publish:
     runs-on: ubuntu-latest
