@@ -4,6 +4,11 @@ on:
       - main
     paths:
       - "packages/common/**"
+defaults:
+  run:
+    working-directory:
+      - "packages/common"
+
 jobs:
   publish:
     runs-on: ubuntu-latest
