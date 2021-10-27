@@ -29,8 +29,8 @@ on:
   push:
     branches:
       - main
-    # paths:
-    #   - "packages/common/**"
+    paths:
+      - "packages/common/**"
 defaults:
   run:
     working-directory: "packages/common"
