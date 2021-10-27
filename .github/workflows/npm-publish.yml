@@ -3,7 +3,7 @@ on:
     branches:
       - main
     paths:
-      - "commo/**"
+      - "common/**"
 jobs:
   publish:
     runs-on: ubuntu-latest
