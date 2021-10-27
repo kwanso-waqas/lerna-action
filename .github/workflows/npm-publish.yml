@@ -6,8 +6,7 @@ on:
     #   - "packages/common/**"
 defaults:
   run:
-    working-directory:
-      - "packages/common"
+    working-directory: "packages/common"
 
 jobs:
   publish:
