@@ -25,16 +25,22 @@ jobs:
 
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
-      - name: Setup npm package
-        working-directory: "packages/lms"
-        run: npm init -y && npm install
+      # - name: Setup npm package
+      #   run: npm init -y && npm install
 
       - name: Cypress run
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v2.9.1
         with:
-          browser: chrome
+          # browser: chrome
+          # start: npm start
+          # wait-on: 'http://localhost:3000'
+          install-command: npm --frozen-lockfile --non-interactive
           start: npm start
+          project: ./packages/lms/
+          spec: packages/lms/cypress/integration/**/*.ts
           wait-on: 'http://localhost:3000'
+          wait-on-timeout: 120
+          record: true
 
           # install: false
           # browser: chrome
