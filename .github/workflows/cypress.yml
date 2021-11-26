@@ -128,7 +128,7 @@ on:
       - 'packages/lms/**'
       - .github/workflows/cypress.yml
 jobs:
-  test:
+   test:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
@@ -139,12 +139,16 @@ jobs:
         with:
           runTests: false
 
-      # run tests in apps/app-b folder
+      # run tests in apps/app-c folder
       # where its package.json file is located
-      # with "npm start" command
+      # with "npm run dev" command
       - name: Cypress tests 🧪
         uses: cypress-io/github-action@v2
         with:
           install: false
+          browser: chrome
           working-directory: packages/lms
           start: npm start
+          # wait for the Next.js app to respond
+          # before starting Cypress tests
+          wait-on: 'http://localhost:3000'
