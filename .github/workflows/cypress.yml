@@ -64,26 +64,34 @@ defaults:
 
 jobs:
   cypress-run:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
+    # Docker image with Cypress pre-installed
+    # https://github.com/cypress-io/cypress-docker-images/tree/master/included
+    container: cypress/included:3.8.3
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      # Install NPM dependencies, cache them correctly
-      # and run all Cypress tests
-      - name: Set up pnpm
-        uses: pnpm/action-setup@v2.0.1
-        with:
-          version: 6
-          # Only install what we need to run the client in-action and tests against it
-          # format:    `--filter <packagename>...`
-          run_install: |
-            - args: [--filter myclient... --filter cypress-tests...]
+      - uses: actions/checkout@v1
+      - run: cypress run
+  # cypress-run:
+  #   runs-on: ubuntu-20.04
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
+  #     # Install NPM dependencies, cache them correctly
+  #     # and run all Cypress tests
+  #     - name: Set up pnpm
+  #       uses: pnpm/action-setup@v2.0.1
+  #       with:
+  #         version: 6
+  #         # Only install what we need to run the client in-action and tests against it
+  #         # format:    `--filter <packagename>...`
+  #         run_install: |
+  #           - args: [--filter packages/lms... --filter cypress-tests...]
 
-      - name: Run Cypress tests
-        uses: cypress-io/github-action@v2
-        with:
-          # we have already installed all dependencies above
-          install: false
-          command: pnpm --dir cypress/ cypress:ci
-          start: pnpm --dir myclient/ dev
-          wait-on: 'https://localhost:3000'
+  #     - name: Run Cypress tests
+  #       uses: cypress-io/github-action@v2
+  #       with:
+  #         # we have already installed all dependencies above
+  #         install: false
+  #         command: pnpm --dir cypress/ cypress:ci
+  #         start: pnpm --dir packages/lms/ dev
+  #         wait-on: 'https://localhost:3000'
