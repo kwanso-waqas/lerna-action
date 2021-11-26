@@ -137,6 +137,7 @@ jobs:
       - name: Install 📦
         uses: cypress-io/github-action@v2
         with:
+          working-directory: packages/lms
           runTests: false
 
       # run tests in apps/app-c folder
