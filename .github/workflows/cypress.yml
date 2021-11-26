@@ -24,8 +24,9 @@ jobs:
             - args: [--filter lms... --filter cypress...]
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
-      - name: Setup npm package
-        run: npm init -y && npm install
+      # - name: Setup npm package
+      #   run: npm init -y && npm install
+
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
