@@ -21,7 +21,7 @@ jobs:
         with:
           version: 6
           run_install: |
-            - args: [--filter packages/lms... --filter cypress-tests...]
+            - args: [--filter lms... --filter cypress...]
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
       - name: Setup npm package
@@ -34,5 +34,5 @@ jobs:
           # wait-on: 'http://localhost:3000'
           install: false
           command: pnpm --dir cypress/ cypress:ci
-          start: pnpm --dir packages/lms
+          start: pnpm --dir lms
           wait-on: 'http://localhost:3000'
