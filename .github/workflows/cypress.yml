@@ -1,4 +1,56 @@
-name: Cypress Tests
+# name: Cypress Tests
+
+# on:
+#   pull_request:
+#     branches:
+#       - main
+#     paths:
+#       - "packages/lms/**"
+# defaults:
+#   run:
+#     working-directory: "packages/lms"
+
+# jobs:
+#   cypress-run:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v2
+#       # - name: Set up pnpm
+#       #   uses: pnpm/action-setup@v2.0.1
+#       #   with:
+#       #     version: 6
+#       #     run_install: |
+#       #       - args: [--filter lms... --filter cypress...]
+
+#       # Install NPM dependencies, cache them correctly
+#       # and run all Cypress tests
+#       # - name: Setup npm package
+#       #   run: npm init -y && npm install
+
+#       - name: Cypress run
+#         uses: cypress-io/github-action@v2.9.1
+#         with:
+#           # browser: chrome
+#           # start: npm start
+#           # wait-on: 'http://localhost:3000'
+
+#           install-command: npm --frozen-lockfile --non-interactive
+#           start: npm start
+#           project: ./packages/lms/
+#           spec: packages/lms/cypress/integration/**/*.ts
+#           wait-on: 'http://localhost:3000'
+#           wait-on-timeout: 120
+#           record: true
+
+#           # install: false
+#           # browser: chrome
+#           # command: pnpm --dir cypress/ cypress:ci
+#           # start: pnpm --dir lms
+#           # wait-on: 'http://localhost:3000'
+
+
+name: End-to-end tests
 
 on:
   pull_request:
@@ -12,38 +64,11 @@ defaults:
 
 jobs:
   cypress-run:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      # - name: Set up pnpm
-      #   uses: pnpm/action-setup@v2.0.1
-      #   with:
-      #     version: 6
-      #     run_install: |
-      #       - args: [--filter lms... --filter cypress...]
-
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
-      # - name: Setup npm package
-      #   run: npm init -y && npm install
-
       - name: Cypress run
-        uses: cypress-io/github-action@v2.9.1
-        with:
-          # browser: chrome
-          # start: npm start
-          # wait-on: 'http://localhost:3000'
-          install-command: npm --frozen-lockfile --non-interactive
-          start: npm start
-          project: ./packages/lms/
-          spec: packages/lms/cypress/integration/**/*.ts
-          wait-on: 'http://localhost:3000'
-          wait-on-timeout: 120
-          record: true
-
-          # install: false
-          # browser: chrome
-          # command: pnpm --dir cypress/ cypress:ci
-          # start: pnpm --dir lms
-          # wait-on: 'http://localhost:3000'
+        uses: cypress-io/github-action@v2
