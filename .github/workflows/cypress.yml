@@ -70,7 +70,10 @@ jobs:
     container: cypress/included:3.8.3
     steps:
       - uses: actions/checkout@v1
-      - run: cypress run
+        with:
+            browser: chrome
+            start: npm start
+            wait-on: 'http://localhost:3000'
   # cypress-run:
   #   runs-on: ubuntu-20.04
   #   steps:
