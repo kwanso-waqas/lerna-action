@@ -20,6 +20,8 @@ jobs:
         uses: pnpm/action-setup@v2.0.1
         with:
           version: 6
+          run_install: |
+            - args: [--filter packages/lms... --filter cypress-tests...]
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
       - name: Setup npm package
@@ -27,6 +29,10 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          browser: chrome
-          start: npm start
-          wait-on: 'http://localhost:3000'
+          # browser: chrome
+          # start: npm start
+          # wait-on: 'http://localhost:3000'
+          install: false
+          command: pnpm --dir cypress/ cypress:ci
+          start: pnpm --dir packages/lms
+          wait-on: 'https://localhost:3000'
