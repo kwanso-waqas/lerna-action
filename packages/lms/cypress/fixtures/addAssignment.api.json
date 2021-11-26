@@ -1,0 +1,21 @@
+{
+  "id": "b5693ceaf1a747d7a2f41b33908d28b2",
+  "name": "baseassignment",
+  "duedate": "2021-09-30T19:00:00",
+  "num_submissions": 0,
+  "max_score": 0.0,
+  "max_code_score": 0.0,
+  "max_written_score": 0.0,
+  "max_task_score": 0.0,
+  "display_duedate": "2021-09-30 19:00:00 UTC",
+  "duedate_notimezone": "2021-09-30T19:00:00",
+  "duedate_timezone": "+0000",
+  "average_score": 0.0,
+  "average_code_score": 0.0,
+  "average_written_score": 0.0,
+  "average_task_score": 0.0,
+  "releaseable": true,
+  "status": "draft",
+  "source_path": null,
+  "release_path": null
+}

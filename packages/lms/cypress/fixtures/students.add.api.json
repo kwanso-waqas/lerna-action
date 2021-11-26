@@ -1,0 +1,13 @@
+[
+  {
+    "id": "test-student",
+    "first_name": "Test",
+    "last_name": "Student",
+    "email": "teststudent@gmail.com"
+  }, {
+    "id": "new-student",
+    "first_name": "New",
+    "last_name": "Student",
+    "email": "newstudent@gmail.com"
+  }
+]

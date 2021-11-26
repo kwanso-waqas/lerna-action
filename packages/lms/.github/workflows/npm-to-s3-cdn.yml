@@ -1,0 +1,31 @@
+name: NPM to S3 CDN
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.16
+
+    - name: Build
+      working-directory: tools/download-npm
+      run: go install
+
+    - name: Download NPM packages
+      run: download-npm --output ./npm-packages starboard-notebook@0.14.2 @illumidesk/starboard-nbgrader@0.3.0
+      
+    - name: Sync packages to S3
+      run: aws s3 sync ./npm-packages s3://content.illumidesk.com/npm/
+      env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_REGION: us-west-2
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

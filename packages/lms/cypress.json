@@ -1,0 +1,10 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "testFiles": "**/*.test.{ts,tsx,js,jsx}",
+  "componentFolder": "./src",
+  "nodeVersion": "system",
+  "integrationFolder": "./cypress/integration",
+  "pluginsFile": "./cypress/plugins/index.js",
+  "viewportWidth": 1440,
+  "viewportHeight": 740
+}

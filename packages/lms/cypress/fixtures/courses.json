@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "value": [
+    {
+      "course_id": "oop",
+      "url": "http://hamindrasool-hp-probook-450-g7:8888/formgrader",
+      "kind": "local"
+    }
+  ]
+}
