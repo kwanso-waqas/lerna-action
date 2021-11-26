@@ -22,7 +22,6 @@ export enum TableName {
   NOTBOOKS_AGAINST_CHAPTERS = 'notebooksAgainstChapters',
   ASSIGNMENT_SUBMISSIONS = 'assignmentSubmissions',
 }
-
 /**
  * @var ManageAssignmentsTable
  */

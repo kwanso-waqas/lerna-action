@@ -58,20 +58,28 @@ on:
       - main
     paths:
       - "packages/lms/**"
-defaults:
-  run:
-    working-directory: "packages/lms"
+
+# defaults:
+#   run:
+#     working-directory: "packages/lms"
 
 jobs:
-  cypress-run:
-    runs-on: ubuntu-20.04
+  test:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Cypress tests 🧪
-        uses: cypress-io/github-action@v2
+      - uses: actions/checkout@master
+      - name: Install dependencies
+        uses: cypress-io/github-action@v1
         with:
-          project: packages/lms
+          # just perform install
+          runTests: false
+      - name: Run e2e tests
+        uses: cypress-io/github-action@v1
+        with:
+          # we have already installed all dependencies above
+          install: false
+          # Cypress tests and config file are in "e2e" folder
+          working-directory: packages/lms
   # cypress-run:
   #   runs-on: ubuntu-latest
   #   # Docker image with Cypress pre-installed
