@@ -25,7 +25,6 @@ jobs:
 
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
-
       - name: Setup npm package
         working-directory: "packages/lms"
         run: npm init -y && npm install
