@@ -17,21 +17,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       # Install NPM dependencies, cache them correctly
-      - name: Set up pnpm
-         uses: pnpm/action-setup@v2.0.1
-
       # and run all Cypress tests
+      - name: Setup npm package
+      - run: npm init -y && npm install
       - name: Cypress run
         uses: cypress-io/github-action@v2
-        
         with:
-          # install: false
-          # command: pnpm --dir cypress/ cypress:ci
-          # start: pnpm --dir myclient/ dev
-          # browser: chrome
-          # start: npm start
-          # wait-on: 'http://localhost:3000'
-          install: false
-          command: pnpm --dir cypress/ cypress:ci
-          start: pnpm --dir myclient/ dev
-          wait-on: 'https://localhost:3000'
+          browser: chrome
+          start: npm start
+          wait-on: 'http://localhost:3000'
