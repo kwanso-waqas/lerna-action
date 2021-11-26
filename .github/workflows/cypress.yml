@@ -50,36 +50,36 @@
 #           # wait-on: 'http://localhost:3000'
 
 
-name: End-to-end tests
+# name: End-to-end tests
 
-on:
-  pull_request:
-    branches:
-      - main
-    paths:
-      - "packages/lms/**"
+# on:
+#   pull_request:
+#     branches:
+#       - main
+#     paths:
+#       - "packages/lms/**"
 
-# defaults:
-#   run:
-#     working-directory: "packages/lms"
+# # defaults:
+# #   run:
+# #     working-directory: "packages/lms"
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: Install dependencies
-        uses: cypress-io/github-action@v1
-        with:
-          # just perform install
-          runTests: false
-      - name: Run e2e tests
-        uses: cypress-io/github-action@v1
-        with:
-          # we have already installed all dependencies above
-          install: false
-          # Cypress tests and config file are in "e2e" folder
-          working-directory: packages/lms
+# jobs:
+#   test:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@master
+#       - name: Install dependencies
+#         uses: cypress-io/github-action@v1
+#         with:
+#           # just perform install
+#           runTests: false
+#       - name: Run e2e tests
+#         uses: cypress-io/github-action@v1
+#         with:
+#           # we have already installed all dependencies above
+#           install: false
+#           # Cypress tests and config file are in "e2e" folder
+#           working-directory: packages/lms
   # cypress-run:
   #   runs-on: ubuntu-latest
   #   # Docker image with Cypress pre-installed
@@ -115,3 +115,25 @@ jobs:
   #         command: pnpm --dir cypress/ cypress:ci
   #         start: pnpm --dir packages/lms/ dev
   #         wait-on: 'https://localhost:3000'
+
+
+name: app-a
+on:
+  pull_request:
+    branches:
+      - main
+    # only run this workflow when something in the app-a changes
+    # or in this workflow file
+    paths:
+      - 'packages/lms/**'
+      - .github/workflows/cypress.yml
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cypress tests 🧪
+        uses: cypress-io/github-action@v2
+        with:
+          project: packages/lms
