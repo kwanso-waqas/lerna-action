@@ -28,6 +28,7 @@ jobs:
       #   run: npm init -y && npm install
 
       - name: Cypress run
+        working-directory: "packages/lms"
         uses: cypress-io/github-action@v2
         with:
           # browser: chrome
