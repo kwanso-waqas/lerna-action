@@ -36,5 +36,6 @@ jobs:
           install: false
           # command: pnpm --dir cypress/ cypress:ci
           # start: pnpm --dir lms
-          start: cypress run
+          browser: chrome
+          start: npm start
           wait-on: 'http://localhost:3000'
