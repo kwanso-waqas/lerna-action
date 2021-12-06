@@ -16,12 +16,14 @@ export const SELECT_COURSE = 'SELECT_COURSE';
 export enum TableName {
   MANAGE_ASSIGNMENTS = 'manageAssignments',
   MANAGE_STUDENTS = 'manageStudents',
+  MANAGE_INSTRUCTORS = 'manageInstructors',
   STUDENT_ASSIGNMENTS = 'studentAssignments',
   MANUAL_GRADING = 'manualGrading',
   ASSIGNMENT_CHAPTERS = 'assignmentChapters',
   NOTBOOKS_AGAINST_CHAPTERS = 'notebooksAgainstChapters',
   ASSIGNMENT_SUBMISSIONS = 'assignmentSubmissions',
 }
+
 /**
  * @var ManageAssignmentsTable
  */
@@ -62,6 +64,21 @@ export const STUDENT_ASSIGNMENT_HEAD: StudentAssignmentHead[] = [
   'written score',
   'task score',
   'need manual grade?',
+];
+
+/**
+ * @var ManageInstructorssTable
+ */
+type InstructorTableHead =
+  | 'instructor email'
+  | 'instructor first name'
+  | 'instructor last name'
+  | 'action';
+export const INSTRUCTOR_TABLE_HEAD: InstructorTableHead[] = [
+  'instructor email',
+  'instructor first name',
+  'instructor last name',
+  'action',
 ];
 
 /**

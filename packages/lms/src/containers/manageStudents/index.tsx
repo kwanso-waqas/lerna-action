@@ -16,6 +16,7 @@ import { STUDENT_TABLE_HEAD, TableName, PAGE_SIZE, ERROR_MESSAGES } from '../../
 import SubHeader from '../../components/subHeader';
 import TableComp from '../../components/tableComp';
 import StudentDialog from '../../components/alerts/studentDialog';
+import DialogComponent from '../../components/dialogComp';
 
 import { SyncIcon, CheckCircle, ErrorIcon } from '../../assets';
 
@@ -29,6 +30,7 @@ interface State {
   searchTerm: string;
   compErrorMessage: string;
   studentModal: boolean;
+  deleteModal: boolean;
   successBar: boolean;
   errorBar: boolean;
   loadingDialog: boolean;
@@ -47,6 +49,7 @@ enum ActionType {
   SET_ERROR_MESSAGE = 'setErrorMessage',
 
   OPEN_STUDENT_DIALOG = 'openStudentDialog',
+  OPEN_DELETE_DIALOG = 'openDeleteDialog',
   SET_SUCCESS_BAR = 'setSuccessBar',
   SET_ERROR_BAR = 'setErrorBar',
   SET_LOADING_DIALOG = 'setLoadingDialog',
@@ -62,6 +65,7 @@ type Action =
   | { type: ActionType.SET_SEARCH_TERM; searchTerm: string }
   | { type: ActionType.SET_ERROR_MESSAGE; compErrorMessage: string }
   | { type: ActionType.OPEN_STUDENT_DIALOG; studentModal: boolean }
+  | { type: ActionType.OPEN_DELETE_DIALOG; deleteModal: boolean }
   | { type: ActionType.SET_ERROR_BAR; errorBar: boolean }
   | { type: ActionType.SET_SUCCESS_BAR; successBar: boolean }
   | { type: ActionType.SET_LOADING_DIALOG; loadingDialog: boolean };
@@ -76,6 +80,7 @@ const initialStudentState: State = {
   searchTerm: '',
   compErrorMessage: '',
   studentModal: false,
+  deleteModal: false,
   successBar: false,
   errorBar: false,
   loadingDialog: false,
@@ -137,6 +142,11 @@ const studentReducer = (state: State, action: Action): State => {
         ...state,
         studentModal: action.studentModal,
       };
+    case ActionType.OPEN_DELETE_DIALOG:
+      return {
+        ...state,
+        deleteModal: action.deleteModal,
+      };
     case ActionType.SET_SUCCESS_BAR:
       return {
         ...state,
@@ -172,6 +182,7 @@ const ManageStudents: FC = (): JSX.Element => {
     compErrorMessage,
     searchTerm,
     studentModal,
+    deleteModal,
     successBar,
     errorBar,
     loadingDialog,
@@ -279,6 +290,17 @@ const ManageStudents: FC = (): JSX.Element => {
         selectedStudent: null,
       });
     dispatch({ type: ActionType.OPEN_STUDENT_DIALOG, studentModal: true });
+  };
+
+  /**
+   * @param event
+   * @returns void
+   */
+  const openDeleteStudentDialog = (): void => {
+    dispatch({
+      type: ActionType.OPEN_DELETE_DIALOG,
+      deleteModal: !deleteModal,
+    });
   };
 
   /**
@@ -450,6 +472,7 @@ const ManageStudents: FC = (): JSX.Element => {
               type={TableName.MANAGE_STUDENTS}
               apiData={paginatedStudents}
               updateAction={openStudentDialog}
+              deleteAction={openDeleteStudentDialog}
               redirectUrl="/manage-students"
             />
           )}
@@ -475,7 +498,7 @@ const ManageStudents: FC = (): JSX.Element => {
   return (
     <>
       <SubHeader
-        title="Manage Students"
+        title="Students"
         btnText="Add New Student"
         btnAction={openStudentDialog}
         emptyData={allStudents.length === 0}
@@ -532,6 +555,32 @@ const ManageStudents: FC = (): JSX.Element => {
           dispatch({
             type: ActionType.SET_ERROR_MESSAGE,
             compErrorMessage: errorMessage,
+          })
+        }
+      />
+      <DialogComponent
+        open={deleteModal}
+        buttonText="Remove Student"
+        primaryTitle="Are you Sure you want to Remove this Student from your Course?"
+        secondaryTitle="Remove this Student from your Campus?"
+        description="Are you sure you want to remove this student? All of this Student rights will be lost."
+        primaryBtnAction={() =>
+          dispatch({
+            type: ActionType.OPEN_DELETE_DIALOG,
+            deleteModal: !deleteModal,
+          })
+        }
+        secondaryBtnAction={() =>
+          dispatch({
+            type: ActionType.OPEN_DELETE_DIALOG,
+            deleteModal: !deleteModal,
+          })
+        }
+        type="deleteStudent"
+        onClose={() =>
+          dispatch({
+            type: ActionType.OPEN_DELETE_DIALOG,
+            deleteModal: !deleteModal,
           })
         }
       />

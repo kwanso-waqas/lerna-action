@@ -53,6 +53,13 @@ export interface Student {
   max_score: number;
 }
 
+export interface Instructor {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+}
+
 export interface StudentAddUpdate {
   id: string;
   first_name: string | null;

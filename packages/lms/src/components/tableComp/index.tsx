@@ -11,6 +11,7 @@ import {
   Assignment,
   AssignmentChapter,
   Student,
+  Instructor,
   StudentAssignment,
   ChapterSubmission,
   AssignmentSubmissionAutograde,
@@ -24,11 +25,14 @@ interface TableCompProps {
     | Assignment[]
     | AssignmentChapter[]
     | Student[]
+    | Instructor[]
     | StudentAssignment[]
     | ChapterSubmission[]
     | AssignmentSubmissionAutograde[];
   // eslint-disable-next-line @typescript-eslint/ban-types
   updateAction?: Function;
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  deleteAction?: Function;
 }
 
 const TableComp: FC<TableCompProps> = ({
@@ -37,6 +41,7 @@ const TableComp: FC<TableCompProps> = ({
   redirectUrl,
   apiData,
   updateAction,
+  deleteAction,
 }): JSX.Element => {
   const [userName, setUserNameVisibility] = useState<boolean>(false);
   const history = useHistory();
@@ -85,6 +90,7 @@ const TableComp: FC<TableCompProps> = ({
                   | Assignment
                   | AssignmentChapter
                   | Student
+                  | Instructor
                   | StudentAssignment
                   | ChapterSubmission
                   | AssignmentSubmissionAutograde,
@@ -97,6 +103,7 @@ const TableComp: FC<TableCompProps> = ({
                   type={type}
                   parentNode={userName}
                   updateAction={updateAction}
+                  deleteAction={deleteAction}
                 />
               ),
             )

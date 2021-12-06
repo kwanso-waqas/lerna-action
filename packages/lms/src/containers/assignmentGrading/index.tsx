@@ -333,7 +333,7 @@ const AssignmentAutoGrading: FC = (): JSX.Element => {
                         position="end"
                         className={classes.cursorPointer}
                         onClick={clearSearch}
-                        data-cy="studentAssignmentTableHeaderSearchClear"
+                        data-cy="autoGradeAssignmentSubmissionTableHeaderSearchClear"
                       >
                         <Cancel fontSize="small" />
                       </InputAdornment>
@@ -345,7 +345,7 @@ const AssignmentAutoGrading: FC = (): JSX.Element => {
                 onChange={onChangeSearchTerm}
                 placeholder="Search"
                 variant="outlined"
-                data-cy="studentAssignmentTableHeaderSearch"
+                data-cy="autoGradeAssignmentSubmissionTableHeaderSearch"
               />
             </Grid>
             <Grid item xs={12} sm={7}>
@@ -355,7 +355,7 @@ const AssignmentAutoGrading: FC = (): JSX.Element => {
                     variant="outlined"
                     color="secondary"
                     onClick={refreshSubmissionAssignmentsList}
-                    data-cy="studentAssignmentTableHeaderSync"
+                    data-cy="autoGradeAssignmentSubmissionTableHeaderSync"
                   >
                     <img alt="sync icon" src={SyncIcon} /> <span className="btnName"> Sync </span>
                   </Button>

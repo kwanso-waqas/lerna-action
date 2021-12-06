@@ -5,9 +5,13 @@ import { NotFound } from '@illumidesk/common-ui';
 import AssignmentRoutes from './assignmentRoutes';
 import GradingRoutes from './gradingRoutes';
 import StudentRoutes from './studentsRoutes';
+import InstructorRoutes from './instructorRoutes';
+import CourseRoutes from './courseRoutes';
+import SettingRoutes from './settingsRoutes';
+import StudentDashboardRoutes from './studentDashRoutes';
 
 import AppLayout from '../layout';
-// import EmptyLayout from '../layout/emptyLayout';
+import Profile from '../containers/profile';
 
 import { getBaseUrl, getBaseUrlSuffix } from '../common/graderConstants';
 
@@ -23,6 +27,11 @@ const Router: FC = (): JSX.Element => {
           <AssignmentRoutes path="/assignment" />
           <GradingRoutes path="/manual-grading" />
           <StudentRoutes path="/manage-students" />
+          <InstructorRoutes path="/manage-instructors" />
+          <CourseRoutes path="/add-course" />
+          <SettingRoutes path="/settings" />
+          <StudentDashboardRoutes path="/students" />
+          <Route path="/profile" component={Profile} />
           <Route component={NotFound} />
         </Switch>
       </AppLayout>

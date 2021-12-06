@@ -13,10 +13,12 @@ import {
   Assignment,
   AssignmentChapter,
   Student,
+  Instructor,
   StudentAssignment,
   ChapterSubmission,
   AssignmentSubmissionAutograde,
 } from '../../common/types';
+import { useStyles } from '../../containers/common/style';
 
 import EditMenu from '../menus/editMenu';
 
@@ -27,9 +29,17 @@ interface TableRowProps {
   redirectAction: (dataToAppend: string, studentId?: string, index?: number) => void;
   type: string;
   parentNode: boolean;
-  singleData: Assignment | AssignmentChapter | Student | StudentAssignment | ChapterSubmission;
+  singleData:
+    | Assignment
+    | AssignmentChapter
+    | Student
+    | StudentAssignment
+    | ChapterSubmission
+    | Instructor;
   // eslint-disable-next-line @typescript-eslint/ban-types
   updateAction?: Function;
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  deleteAction?: Function;
 }
 
 const TableRowComp: FC<TableRowProps> = ({
@@ -38,9 +48,11 @@ const TableRowComp: FC<TableRowProps> = ({
   parentNode,
   singleData,
   updateAction,
+  deleteAction,
 }): JSX.Element => {
   const [userName, setUserNameVisibility] = useState<boolean>(false);
   const classes = ContainerStyles();
+  const btnClasses = useStyles();
   const history = useHistory();
 
   useEffect(() => {
@@ -91,6 +103,7 @@ const TableRowComp: FC<TableRowProps> = ({
                 [classes.counterTdActive]: num_submissions > 0,
               })}
               onClick={() => history.push(`/manage-assignments/${name}`)}
+              data-cy="autoGradingAssignmentBtn"
             >
               {num_submissions}
             </Box>
@@ -348,6 +361,17 @@ const TableRowComp: FC<TableRowProps> = ({
             ) : (
               ''
             )}
+            {deleteAction ? (
+              <Button
+                variant="outlined"
+                className={clsx(btnClasses.tableBtn, btnClasses.tableBtnDel)}
+                onClick={(event) => deleteAction(event)}
+              >
+                Delete
+              </Button>
+            ) : (
+              ''
+            )}
           </TableCell>
         </>
       );
@@ -478,12 +502,57 @@ const TableRowComp: FC<TableRowProps> = ({
                 variant="outlined"
                 color="primary"
                 onClick={() => updateAction(autoAssignmentName, autoStudentId)}
-                data-cy={`editAssignmentBtn`}
+                data-cy={`autogradeAssignmentSubmissionBtn`}
               >
                 <img src={autogradeIcon} alt="autograde icon" /> Autograde
               </Button>
             ) : (
               <></>
+            )}
+          </TableCell>
+        </>
+      );
+      break;
+
+    case TableName.MANAGE_INSTRUCTORS:
+      const {
+        firstName: instructorFirstName,
+        lastName: instructorLastName,
+        email: instructorEmail,
+      } = singleData as Instructor;
+      columnData = (
+        <>
+          <TableCell>
+            <Typography variant="body1">{instructorEmail}</Typography>
+          </TableCell>
+          <TableCell>
+            <Typography variant="body1">{instructorFirstName}</Typography>
+          </TableCell>
+          <TableCell>
+            <Typography variant="body1">{instructorLastName}</Typography>
+          </TableCell>
+          <TableCell>
+            {updateAction ? (
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick={(event) => updateAction(event, singleData as Student)}
+              >
+                Edit
+              </Button>
+            ) : (
+              ''
+            )}
+            {deleteAction ? (
+              <Button
+                variant="outlined"
+                className={clsx(btnClasses.tableBtn, btnClasses.tableBtnDel)}
+                onClick={(event) => deleteAction(event)}
+              >
+                Delete
+              </Button>
+            ) : (
+              ''
             )}
           </TableCell>
         </>
