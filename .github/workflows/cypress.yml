@@ -129,7 +129,7 @@ on:
       - .github/workflows/cypress.yml
 jobs:
    test:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
@@ -153,3 +153,5 @@ jobs:
           # wait for the Next.js app to respond
           # before starting Cypress tests
           wait-on: 'http://localhost:3000'
+          wait-on-timeout: 10000
+          record: false
