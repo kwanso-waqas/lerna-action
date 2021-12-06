@@ -1,0 +1,42 @@
+[
+  {
+    "id": "620e5cd7305a431784d90efb362c10e0",
+    "name": "ps1",
+    "timestamp": "2021-09-20T07:57:31.559315",
+    "first_name": "Robert",
+    "last_name": "William",
+    "student": "robert-william",
+    "score": 3.0,
+    "max_score": 16.0,
+    "code_score": 3.0,
+    "max_code_score": 8.0,
+    "written_score": 0.0,
+    "max_written_score": 4.0,
+    "task_score": 0.0,
+    "max_task_score": 4.0,
+    "needs_manual_grade": true,
+    "display_timestamp": "2021-09-20 07:57:31 UTC",
+    "autograded": true,
+    "submitted": true
+  },
+  {
+    "id": "2d1513de84484347bb9f30e044bba649",
+    "name": "ps1",
+    "timestamp": "2021-09-20T07:57:31.559315",
+    "first_name": "John",
+    "last_name": "Doe",
+    "student": "john-doe",
+    "score": 0.0,
+    "max_score": 16.0,
+    "code_score": 0.0,
+    "max_code_score": 8.0,
+    "written_score": 0.0,
+    "max_written_score": 4.0,
+    "task_score": 0.0,
+    "max_task_score": 4.0,
+    "needs_manual_grade": true,
+    "display_timestamp": "2021-09-20 07:57:31 UTC",
+    "autograded": true,
+    "submitted": true
+  }
+]

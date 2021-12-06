@@ -1,0 +1,65 @@
+[
+  {
+    "id": "john-doe",
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "johndoe@gmail.com",
+    "lms_user_id": null,
+    "max_score": 21,
+    "score": 0
+  },
+  {
+    "id": "robert-william",
+    "first_name": "Robert",
+    "last_name": "William",
+    "email": "robertwilliam@gmail.com",
+    "lms_user_id": null,
+    "max_score": 21,
+    "score": 0
+  },
+  {
+    "id": "david-miller",
+    "first_name": "David",
+    "last_name": "Miller",
+    "email": "davidmiller@gmail.com",
+    "lms_user_id": null,
+    "max_score": 21,
+    "score": 0
+  },
+  {
+    "id": "daniel-anderson",
+    "first_name": "Daniel",
+    "last_name": "Anderson",
+    "email": "danielanderson@gmail.com",
+    "lms_user_id": null,
+    "max_score": 21,
+    "score": 0
+  },
+  {
+    "id": "scott-allen",
+    "first_name": "Scott",
+    "last_name": "Allen",
+    "email": "scotallen@gmail.com",
+    "lms_user_id": null,
+    "max_score": 21,
+    "score": 0
+  },
+  {
+    "id": "frank-hall",
+    "first_name": "Frank",
+    "last_name": "Hall",
+    "email": "frankhall@gmail.com",
+    "lms_user_id": null,
+    "max_score": 21,
+    "score": 0
+  },
+  {
+    "id": "jason-clark",
+    "first_name": "Jason",
+    "last_name": "Clark",
+    "email": "jasonclark@gmail.com",
+    "lms_user_id": null,
+    "max_score": 21,
+    "score": 0
+  }
+]

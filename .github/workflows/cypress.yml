@@ -1,0 +1,157 @@
+# name: Cypress Tests
+
+# on:
+#   pull_request:
+#     branches:
+#       - main
+#     paths:
+#       - "packages/lms/**"
+# defaults:
+#   run:
+#     working-directory: "packages/lms"
+
+# jobs:
+#   cypress-run:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v2
+#       # - name: Set up pnpm
+#       #   uses: pnpm/action-setup@v2.0.1
+#       #   with:
+#       #     version: 6
+#       #     run_install: |
+#       #       - args: [--filter lms... --filter cypress...]
+
+#       # Install NPM dependencies, cache them correctly
+#       # and run all Cypress tests
+#       # - name: Setup npm package
+#       #   run: npm init -y && npm install
+
+#       - name: Cypress run
+#         uses: cypress-io/github-action@v2.9.1
+#         with:
+#           # browser: chrome
+#           # start: npm start
+#           # wait-on: 'http://localhost:3000'
+
+#           install-command: npm --frozen-lockfile --non-interactive
+#           start: npm start
+#           project: ./packages/lms/
+#           spec: packages/lms/cypress/integration/**/*.ts
+#           wait-on: 'http://localhost:3000'
+#           wait-on-timeout: 120
+#           record: true
+
+#           # install: false
+#           # browser: chrome
+#           # command: pnpm --dir cypress/ cypress:ci
+#           # start: pnpm --dir lms
+#           # wait-on: 'http://localhost:3000'
+
+
+# name: End-to-end tests
+
+# on:
+#   pull_request:
+#     branches:
+#       - main
+#     paths:
+#       - "packages/lms/**"
+
+# # defaults:
+# #   run:
+# #     working-directory: "packages/lms"
+
+# jobs:
+#   test:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@master
+#       - name: Install dependencies
+#         uses: cypress-io/github-action@v1
+#         with:
+#           # just perform install
+#           runTests: false
+#       - name: Run e2e tests
+#         uses: cypress-io/github-action@v1
+#         with:
+#           # we have already installed all dependencies above
+#           install: false
+#           # Cypress tests and config file are in "e2e" folder
+#           working-directory: packages/lms
+  # cypress-run:
+  #   runs-on: ubuntu-latest
+  #   # Docker image with Cypress pre-installed
+  #   # https://github.com/cypress-io/cypress-docker-images/tree/master/included
+  #   container: cypress/included:3.8.3
+  #   steps:
+  #     - uses: actions/checkout@v1
+  #       with:
+  #           browser: chrome
+  #           start: cypress run
+  #           wait-on: 'http://localhost:3000'
+  # cypress-run:
+  #   runs-on: ubuntu-20.04
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
+  #     # Install NPM dependencies, cache them correctly
+  #     # and run all Cypress tests
+  #     - name: Set up pnpm
+  #       uses: pnpm/action-setup@v2.0.1
+  #       with:
+  #         version: 6
+  #         # Only install what we need to run the client in-action and tests against it
+  #         # format:    `--filter <packagename>...`
+  #         run_install: |
+  #           - args: [--filter packages/lms... --filter cypress-tests...]
+
+  #     - name: Run Cypress tests
+  #       uses: cypress-io/github-action@v2
+  #       with:
+  #         # we have already installed all dependencies above
+  #         install: false
+  #         command: pnpm --dir cypress/ cypress:ci
+  #         start: pnpm --dir packages/lms/ dev
+  #         wait-on: 'https://localhost:3000'
+
+
+name: app-a
+on:
+  pull_request:
+    branches:
+      - main
+    # only run this workflow when something in the app-a changes
+    # or in this workflow file
+    paths:
+      - 'packages/lms/**'
+      - .github/workflows/cypress.yml
+jobs:
+   test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      # install dependencies using the root folder
+      - name: Install 📦
+        uses: cypress-io/github-action@v2
+        with:
+          working-directory: packages/lms
+          runTests: false
+
+      # run tests in apps/app-c folder
+      # where its package.json file is located
+      # with "npm run dev" command
+      - name: Cypress tests 🧪
+        uses: cypress-io/github-action@v2
+        with:
+          install: false
+          browser: chrome
+          working-directory: packages/lms
+          start: npm start
+          # wait for the Next.js app to respond
+          # before starting Cypress tests
+          wait-on: 'http://localhost:3000'
+          wait-on-timeout: 10000
+          record: false
